@@ -27,11 +27,9 @@ function App() {
           <Nav.Link onClick={ ()=>{ navigate('/event') } }>Event</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/event/one') } }>Event One</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/event/two') } }>Event Two</Nav.Link>
-
         </Nav>
         </Container>
       </Navbar>
-
       <Link></Link>
       <Routes>
         <Route path='/' element={
