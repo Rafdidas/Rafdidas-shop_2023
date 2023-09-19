@@ -1,0 +1,15 @@
+.header a {color:#fff; text-decoration:none; }
+.header .me-auto a {padding-right:10px;}
+
+.main_bg {width:100%; height:500px; background:url('/public/img/bg.png') no-repeat center/cover;}
+.main_inner {width:100%; max-width:1200px; margin:0 auto;}
+.main_prd {display:grid; justify-content:space-between; align-items:flex-start; grid-template-columns:repeat(3, 31%); column-gap:14px; padding-top:40px;}
+.main_prd .box .img img {width:100%; height:auto;}
+.main_prd .box .info {text-align:center;}
+.main_prd .box .info p {margin:0;}
+.main_prd .box .info p.subject {font-size:16px; font-weight:700;}
+.main_prd .box .info p.content {padding-top:5px; font-size:14px; font-weight:400;}
+.main_prd .box .info p.price {padding-top:10px; font-size:15px;}
+
+.about,
+.event {text-align:center;}
