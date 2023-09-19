@@ -57,9 +57,7 @@ function Detail(props){
 
 function MsgBox(){
   return(
-    <div className="msg_box">
-      2초 이내에 구입 시 할인
-    </div>
+    <div className="msg_box">2초 이내에 구입 시 할인</div>
   );
 }
 
