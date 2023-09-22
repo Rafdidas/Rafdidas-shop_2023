@@ -22,11 +22,17 @@ function Detail(props){
     return x.id == id;
   });
 
+  let [num, setNum] = useState('')
+
   useEffect(()=>{
     setTimeout( ()=> {
       setMsg(false);
     },2000);
-  })
+
+    if (isNaN(num) === true){
+      alert('ERROR')
+    }
+  }, [num])
 
   return (
     <div className="container">
@@ -40,6 +46,7 @@ function Detail(props){
       {
         msg === true ? <MsgBox/> : null
       }
+      <input onChange={(e)=>{ setNum(e.target.value) }} />
       <div className="row">
         <div className="col-md-6">
           <img src={`https://codingapple1.github.io/shop/shoes${id}.jpg`} width="100%" alt="detail img" />
