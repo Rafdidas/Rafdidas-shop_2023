@@ -33,6 +33,13 @@ function Detail(props){
       alert('ERROR')
     }
   }, [num])
+  function tabView(){
+    const tabBox = document.querySelectorAll('.tab_box');
+    //const tabLi = tabBox.querySelectorAll('li');
+    tabBox.forEach(()=> {
+      console.log(tabBox);
+    });
+  }
 
   return (
     <div className="container">
@@ -58,6 +65,15 @@ function Detail(props){
           <button className="btn btn-danger">주문하기</button> 
         </div>
       </div>
+      <ul className="tab_box">
+        <li className="active"><span onClick={()=>{tabView()}}>tab 01</span></li>
+        <li><span>tab 02</span></li>
+        <li><span>tab 03</span></li>
+      </ul>
+      <div className="tabCnt tabCnt0 active">tab cont 01</div>
+      <div className="tabCnt tabCnt1">tab cont 02</div>
+      <div className="tabCnt tabCnt2">tab cont 03</div>
+      
     </div> 
   );
 }

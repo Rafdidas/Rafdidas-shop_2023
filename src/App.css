@@ -14,7 +14,13 @@
 .about,
 .event {text-align:center;}
 
-.msg_box {display:block; height:50px; margin-top:30px; background:#eaeaea; border-radius:10px; border:1px solid #dadada;font-size:16px; font-weight:700; line-height:50px; text-align:center;}
+.msg_box {display:block; height:50px; margin:30px 0; background:#eaeaea; border-radius:10px; border:1px solid #dadada;font-size:16px; font-weight:700; line-height:50px; text-align:center;}
 
 .btn_box {display:block; width:100%; margin:30px 0; text-align:center;}
 .btn_box .box_btn {display:inline-block; width:180px; font-size:14px; font-weight:700; line-height:40px; border:1px solid #dadada; cursor:pointer;}
+
+.tab_box {display:grid; grid-template-columns:repeat(3,1fr); padding:0; list-style:none;}
+.tab_box li > span {display:block; border-bottom:1px solid #eaeaea; line-height:40px;cursor:pointer;}
+.tab_box li.active > span {border-bottom:1px solid #000;}
+.tabCnt {display:none;}
+.tabCnt.active {display:block;}
