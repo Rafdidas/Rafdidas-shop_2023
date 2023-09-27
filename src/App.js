@@ -7,10 +7,11 @@ import data from './data';
 import Detail from './routes/detail';
 
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes,setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -44,6 +45,17 @@ function App() {
                     )
                   })
                 }
+              </div>
+              <div className='btn_box'>
+                <span className='box_btn' onClick={()=>{
+                  axios.get('https://codingapple1.github.io/shop/data2.json')
+                  .then((res)=>{ 
+                    const newData = res;
+                    setShoes(shoes => [...shoes, ...newData.data]);
+                    console.log(newData);
+                  })
+                  .catch(()=>{ console.log('실패'); })
+                }}>More</span>
               </div>
             </div>
           </>

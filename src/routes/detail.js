@@ -19,7 +19,7 @@ function Detail(props){
 
   let {id} = useParams();
   let findPrd = props.shoes.find(function(x){
-    return x.id == id;
+    return x.id === id;
   });
 
   let [num, setNum] = useState('')
