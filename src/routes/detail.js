@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
+
+import {Context1} from './../App.js';
 
 let BtnStyled = styled.button`
   background: ${ props=> props.bg };
@@ -39,8 +41,18 @@ function Detail(props){
     setTab(index);
   };
 
+  let [fade,setFade] = useState('')
+  useEffect(()=>{
+    setFade('end')
+    return ()=>{
+      setFade('')
+    }
+  },[])
+
+  let {재고} = useContext(Context1);
+
   return (
-    <div className="container">
+    <div className={`container start ${fade}`}>
       {count}
       <button onClick={()=>{ setCount(count+1) }}>Button</button>
       <BlackBox>
@@ -63,15 +75,24 @@ function Detail(props){
           <button className="btn btn-danger">주문하기</button> 
         </div>
       </div>
-      <ul className="tab_box">
+      <TabCont tab={tab} shoes={props.shoes} TabClick={TabClick}/>
+    </div> 
+  );
+}
+
+function TabCont({tab, shoes, TabClick}){
+  let {재고} = useContext(Context1);
+  return(
+    <>
+    <ul className="tab_box">
         <li className={tab === 0 ? 'active' : ''} onClick={()=> TabClick(0)}><span>tab 01</span></li>
         <li className={tab === 1 ? 'active' : ''} onClick={()=> TabClick(1)}><span>tab 02</span></li>
         <li className={tab === 2 ? 'active' : ''} onClick={()=> TabClick(2)}><span>tab 03</span></li>
-      </ul>
-      <div className={`tabCnt tabCnt${tab} active`}>
-        {`tab cont 0${tab + 1}`}
-      </div>
-    </div> 
+    </ul>
+    <div className={tab === 0 ? 'tabCnt tabCnt0 active' : 'tabCnt tabCnt0 start'}>{shoes[tab].title} {재고[0]}</div>
+    <div className={tab === 1 ? 'tabCnt tabCnt1 active' : 'tabCnt tabCnt1 start'}>{shoes[tab].content} {재고[1]}</div>
+    <div className={tab === 2 ? 'tabCnt tabCnt2 active' : 'tabCnt tabCnt2 start'}>{shoes[tab].price} {재고[2]}</div>
+    </>
   );
 }
 
