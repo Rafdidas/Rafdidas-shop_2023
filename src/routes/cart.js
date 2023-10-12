@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 function Cart(){
 
-    let store = useSelector((state)=>{ return state });
+    let store = useSelector((state)=>{ return state.cartEa });
 
     return(
         <div className="container cart">
@@ -18,18 +18,31 @@ function Cart(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{ store.cartEa[0].id }</td>
-                        <td>{ store.cartEa[0].name }</td>
-                        <td>{ store.cartEa[0].count }</td>
+                    {
+                        
+                        store.cartEa.map((a,i)=>{
+                            return(
+                                <t key={i}>
+                                    <td>{ store[i].id }</td>
+                                    <td>{ store[i].name }</td>
+                                    <td>{ store[i].count }</td>
+                                    <td>안녕</td>
+                                </t>
+                            )
+                        })
+                    }
+                    {/* <tr>
+                        <td>{ store[0].id }</td>
+                        <td>{ store[0].name }</td>
+                        <td>{ store[0].count }</td>
                         <td>안녕</td>
                     </tr>
                     <tr>
-                        <td>{ store.cartEa[1].id }</td>
-                        <td>{ store.cartEa[1].name }</td>
-                        <td>{ store.cartEa[1].count }</td>
+                        <td>{ store[1].id }</td>
+                        <td>{ store[1].name }</td>
+                        <td>{ store[1].count }</td>
                         <td>안녕</td>
-                    </tr>
+                    </tr> */}
                 </tbody>
             </Table> 
         </div>
