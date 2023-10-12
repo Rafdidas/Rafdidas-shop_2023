@@ -5,6 +5,7 @@ import {Navbar, Container, Nav} from 'react-bootstrap';
 
 import data from './data';
 import Detail from './routes/detail';
+import Cart from './routes/cart';
 
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
@@ -26,6 +27,7 @@ function App() {
         <Nav className="me-auto">
           <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/detail/1') } }>Detail</Nav.Link>
+          <Nav.Link onClick={ ()=>{ navigate('/cart') } }>Cart</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/about') } }>About</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/about/member') } }>Member</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/about/location') } }>Location</Nav.Link>
@@ -69,6 +71,7 @@ function App() {
             <Detail shoes={ shoes } />
           </Context1.Provider>
         } />
+        <Route path='/cart' element={<Cart/>} />
         <Route path='/about' element={<About/>}>
           <Route path='member' element={<div>Member</div>} />
           <Route path='location' element={<div>Location</div>} />

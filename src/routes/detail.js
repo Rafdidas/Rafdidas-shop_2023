@@ -72,7 +72,8 @@ function Detail(props){
           <h4 className="pt-5">{ findPrd.title }</h4>
           <p>{ findPrd.content }</p>
           <p> { findPrd.price } </p>
-          <button className="btn btn-danger">주문하기</button> 
+          <button className="btn btn-danger">주문하기</button>
+          <div>{재고}</div>
         </div>
       </div>
       <TabCont tab={tab} shoes={props.shoes} TabClick={TabClick}/>
