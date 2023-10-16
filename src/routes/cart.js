@@ -20,29 +20,17 @@ function Cart(){
                 <tbody>
                     {
                         
-                        store.cartEa.map((a,i)=>{
+                        store.map((a,i)=>{
                             return(
-                                <t key={i}>
+                                <tr key={i}>
                                     <td>{ store[i].id }</td>
                                     <td>{ store[i].name }</td>
                                     <td>{ store[i].count }</td>
                                     <td>안녕</td>
-                                </t>
-                            )
+                                </tr>
+                            );
                         })
                     }
-                    {/* <tr>
-                        <td>{ store[0].id }</td>
-                        <td>{ store[0].name }</td>
-                        <td>{ store[0].count }</td>
-                        <td>안녕</td>
-                    </tr>
-                    <tr>
-                        <td>{ store[1].id }</td>
-                        <td>{ store[1].name }</td>
-                        <td>{ store[1].count }</td>
-                        <td>안녕</td>
-                    </tr> */}
                 </tbody>
             </Table> 
         </div>
