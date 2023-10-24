@@ -53,7 +53,6 @@ function Detail(props){
   },[])
 
   let {재고} = useContext(Context1);
-
   let dispatch = useDispatch();
 
   return (
