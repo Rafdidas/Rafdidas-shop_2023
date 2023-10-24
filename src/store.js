@@ -24,8 +24,14 @@ let cartEa = createSlice({
         {id : 1, name : 'Red Knit', count : 3},
         {id : 2, name : 'Grey Yordan', count : 1}
     ],
-    
+    // reducers: {
+    //     changeCount(state){
+    //         return state.count + 1
+    //     }
+    // }
 })
+
+export let { changeCount } = cartEa.actions
 
 export default configureStore({
     reducer:{
