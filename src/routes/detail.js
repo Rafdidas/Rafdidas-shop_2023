@@ -4,6 +4,9 @@ import {useState, useEffect, useContext} from "react";
 
 import {Context1} from './../App.js';
 
+import { useDispatch } from "react-redux";
+import { addProduct } from "../store.js";
+
 let BtnStyled = styled.button`
   background: ${ props=> props.bg };
   color: ${ props => props.bg === 'blue' ? 'white' : 'black'};
@@ -51,6 +54,8 @@ function Detail(props){
 
   let {재고} = useContext(Context1);
 
+  let dispatch = useDispatch();
+
   return (
     <div className={`container start ${fade}`}>
       {count}
@@ -72,7 +77,13 @@ function Detail(props){
           <h4 className="pt-5">{ findPrd.title }</h4>
           <p>{ findPrd.content }</p>
           <p> { findPrd.price } </p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{
+            dispatch(
+              addProduct(
+                {id: id, name: findPrd.title, count: '1'}
+              )
+            )
+          }}>주문하기</button>
           <div>{재고}</div>
         </div>
       </div>
