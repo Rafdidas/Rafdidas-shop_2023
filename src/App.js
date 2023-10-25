@@ -21,6 +21,7 @@ function App() {
 
   let [watched, setWatched] = useState([]);
   useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify([]))
     let initialWatched = JSON.parse(localStorage.getItem('watched')) || [];
     setWatched(initialWatched);
     //localStorage.setItem('watched', JSON.stringify([]))
