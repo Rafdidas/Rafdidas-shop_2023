@@ -55,6 +55,17 @@ function Detail(props){
   let {재고} = useContext(Context1);
   let dispatch = useDispatch();
 
+  let recentId = localStorage.getItem('watched') || [];
+  recentId = JSON.parse(recentId);
+  let recentIdNew = id;
+  if(!recentId.includes(recentIdNew)){
+    recentId.push(recentIdNew);
+    localStorage.setItem('watched',JSON.stringify(recentId));
+    props.setWatched(recentId);
+  }
+  
+  //console.log(recentId);
+
   return (
     <div className={`container start ${fade}`}>
       {count}

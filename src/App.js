@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import {Navbar, Container, Nav} from 'react-bootstrap';
 
 import data from './data';
@@ -18,6 +18,23 @@ function App() {
   let [재고] = useState([10,11,12]);
 
   let navigate = useNavigate();
+
+  let [watched, setWatched] = useState([]);
+  useEffect(()=>{
+    let initialWatched = JSON.parse(localStorage.getItem('watched')) || [];
+    setWatched(initialWatched);
+    //localStorage.setItem('watched', JSON.stringify([]))
+  }, []);
+
+  // let updateWatched = (newWatched)=>{
+  //   setWatched(newWatched);
+  // };
+
+  useEffect(()=>{
+    console.log(watched);
+  });
+
+  
 
   return (
     <div>
@@ -37,7 +54,6 @@ function App() {
         </Nav>
         </Container>
       </Navbar>
-      <Link></Link>
       <Routes>
         <Route path='/' element={
           <>
@@ -64,11 +80,12 @@ function App() {
                 }}>More</span>
               </div>
             </div>
+            <RecentMain watched={ watched } />
           </>
         }/>
         <Route path='/detail/:id' element={
           <Context1.Provider value={{ 재고 }}>
-            <Detail shoes={ shoes } />
+            <Detail shoes={ shoes } watched={ watched } setWatched={ setWatched }  />
           </Context1.Provider>
         } />
         <Route path='/cart' element={<Cart/>} />
@@ -89,8 +106,11 @@ function App() {
 
 function PrdBox({shoes}){
   return(
+    
     <div className='box'>
-      <div className='img'><img alt="shoes" src={process.env.PUBLIC_URL + '../img/shoes'+shoes.id+'.jpg'}/></div>
+      <Link to={'/detail/'+shoes.id}>
+        <div className='img'><img alt="shoes" src={process.env.PUBLIC_URL + '../img/shoes'+shoes.id+'.jpg'}/></div>
+      </Link>
       <div className='info'>
         <p className='subject'>{ shoes.title }</p>
         <p className='content'>{ shoes.content }</p>
@@ -116,6 +136,24 @@ function Event(){
       <Outlet></Outlet>
     </div>
   );
+}
+
+function RecentMain(props){
+  return(
+    <div className='main_recent'>
+      <h4>최근 본 상품</h4>
+      <ul>
+        {
+          props.watched.map((a,i)=>{
+                return(
+                    <li key={i}>{ props.watched[i] }</li>
+                );
+            })
+          }
+        
+      </ul>
+    </div>
+  )
 }
 
 export default App;
