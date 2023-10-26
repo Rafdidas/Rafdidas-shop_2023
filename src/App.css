@@ -31,3 +31,5 @@
 .main_recent {display:block; position:fixed; top:50%; right:50px; width:150px; height:auto; background:#fff; border:1px solid #eaeaea;}
 .main_recent > h4 {padding:10px; background:#dadada; font-size:13px; font-weight:700;}
 .main_recent > ul {padding:10px; margin:0; list-style:none;}
+
+.user_name {color:#fff;}

@@ -9,6 +9,7 @@ import Cart from './routes/cart';
 
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
 export let Context1 = createContext();
 
@@ -24,17 +25,17 @@ function App() {
     localStorage.setItem('watched', JSON.stringify([]))
     let initialWatched = JSON.parse(localStorage.getItem('watched')) || [];
     setWatched(initialWatched);
-    //localStorage.setItem('watched', JSON.stringify([]))
   }, []);
 
-  // let updateWatched = (newWatched)=>{
-  //   setWatched(newWatched);
-  // };
+  
 
-  useEffect(()=>{
-    console.log(watched);
-  });
-
+  let result = useQuery(['userName'], ()=>
+    axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
+      console.log('요청');
+      return a.data;
+    }),
+    { staleTime : 2000 }
+  );
   
 
   return (
@@ -52,6 +53,12 @@ function App() {
           <Nav.Link onClick={ ()=>{ navigate('/event') } }>Event</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/event/one') } }>Event One</Nav.Link>
           <Nav.Link onClick={ ()=>{ navigate('/event/two') } }>Event Two</Nav.Link>
+        </Nav>
+        <Nav className='user_name'>
+          안녕하세요. { result.isLoading ? 'Loading' : result.data.name }
+          { result.isLoading && 'Loading' }
+          { result.error && 'error' }
+          { result.data && result.data.name }
         </Nav>
         </Container>
       </Navbar>
