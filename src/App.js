@@ -1,17 +1,21 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createContext, useEffect, useState } from 'react';
+import { Suspense, createContext, lazy, useEffect, useState } from 'react';
 import {Navbar, Container, Nav} from 'react-bootstrap';
 
 import data from './data';
-import Detail from './routes/detail';
-import Cart from './routes/cart';
+// import Detail from './routes/detail';
+// import Cart from './routes/cart';
+
 
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
 export let Context1 = createContext();
+
+const Detail = lazy(() => import('./routes/detail.js'));
+const Cart = lazy(() => import('./routes/cart.js'));
 
 function App() {
 
@@ -93,7 +97,9 @@ function App() {
         }/>
         <Route path='/detail/:id' element={
           <Context1.Provider value={{ 재고 }}>
-            <Detail shoes={ shoes } watched={ watched } setWatched={ setWatched }  />
+            <Suspense fallback={<div>Loading</div>}>
+              <Detail shoes={ shoes } watched={ watched } setWatched={ setWatched }  />
+            </Suspense>
           </Context1.Provider>
         } />
         <Route path='/cart' element={<Cart/>} />
@@ -158,7 +164,6 @@ function RecentMain(props){
                 );
             })
           }
-        
       </ul>
     </div>
   )
